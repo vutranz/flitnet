@@ -1,0 +1,120 @@
+<style>
+    label {
+        display: block;
+        margin-bottom: 5px;
+        color: white;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+        padding: 5px;
+        margin-bottom: 10px;
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    input[type="submit"] {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        border-radius: 3px;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #3e8e41;
+    }
+</style>
+<div style="background-color: #000;border-top:1px solid white;border-bottom:1px solid white">
+    <div class="container">
+        <div class="row">
+            <form action="/movie/add" method="POST">
+                <label for="type">Type:</label>
+                    <select id="type" name="type">
+                        <option value="Science">Science</option>
+                        <option value="Comedy">Comedy</option>
+                        <option value="Horror">Horror</option>
+                        <option value="Fiction">Fiction</option>
+                        <option value="Hero">Hero</option>
+                        <option value="Drama">Drama</option>
+                    </select>
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required>
+
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required></textarea>
+
+                <label for="language">Language:</label>
+                <input type="text" id="language" name="language" required>
+
+                <label for="country">Country:</label>
+                <input type="text" id="country" name="country" required>
+
+                <label for="director">Director:</label>
+                <input type="text" id="director" name="director" required>
+
+                <label for="poster">Poster:</label>
+                <input type="text" id="poster" name="poster" required>
+
+                <label for="trailer">Trailer:</label>
+                <input type="text" id="trailer" name="trailer" required>
+
+                <label for="movie">Movie:</label>
+                <input type="text" id="movie" name="movie" required>
+
+                <input type="submit" value="Add">
+            </form>
+
+        </div>
+        <div class="row">
+            <table class="table" style="color: #fff;">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Type</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Language</th>
+                        <th>Country</th>
+                        <th>Director</th>
+                        <th>Poster</th>
+                        <th>Trailer</th>
+                        <th>Movie</th>
+                        <th>Time created</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each movies}}
+                    <tr>
+                        <td>{{this.id_movie}}</td>
+                        <td>{{this.id_type_movie}}</td>
+                        <td>{{this.title_movie}}</td>
+                        <td>{{this.description_movie}}</td>
+                        <td>{{this.language}}</td>
+                        <td>{{this.country}}</td>
+                        <td>{{this.director}}</td>
+                        <td>{{this.poster}}</td>
+                        <td>{{this.trailer}}</td>
+                        <td>{{this.movie}}</td>
+                        <td>{{this.time_created}}</td>
+                        <td>
+                            <div style="display: flex; gap: 20px;">
+                                <a class="btn btn-danger" style="padding: 10px 20px;" href="/movie/delete/id">Xóa</a>
+                                <a class="btn btn-warning" style="padding: 10px 20px" href="/movie/edit/id">Sửa</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+</head>
+<body>
+    
+    <div class="hero-slide__item ">
+        <div class="hero-slide__item__content">
+            <div class="hero-slide__item__content__info">
+                <h2 class="title">Title film</h2>
+                <div class="overview">Lorem ipsum dolor sit amet consectetur
+                    adipisicing elit. Consequatur sed alias neque voluptates omnis
+                    non, reiciendis eum. Veniam esse dicta, sapiente vero qui culpa
+                    vitae neque quibusdam voluptas, ipsa iste.</div>
+                <div class="btns">
+                    <div class="btn-watch" role="button" tabindex="-1">Watch now</div>
+                    <div class="btn-trailer" role="button" tabindex="-1">
+                        Watch trailer</div>
+                </div>
+            </div>
+            <div class="hero-slide__item__content__poster">
+                <img
+                    src="https://lumiere-a.akamaihd.net/v1/images/p_20cs_avatarwayofwater_1710_4025feea.jpeg?region=0%2C0%2C540%2C810"
+                    alt=""
+                    class="poster"
+                />
+            </div>
+        </div>
+    </div>
+    <script>
+
+            const slide = [
+                {
+                    background: 'https://genk.mediacdn.vn/zoom/700_438/139269124445442048/2022/12/31/avatar1672500493013-1672500493501603498260.jpg',
+                    poster: 'https://lumiere-a.akamaihd.net/v1/images/p_20cs_avatarwayofwater_1710_4025feea.jpeg?region=0%2C0%2C540%2C810',
+                    title: "Title-film",
+                    overview: "Overview",
+                },
+                {
+                    background: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMgdCJIMcQg92d8-pC4xUqrVIuB17pAhfXIA&usqp=CAU',
+                    poster: 'https://i.pinimg.com/originals/53/03/29/530329b951317d4fe4157063adb4daae.jpg',
+                    title: "Title-film2",
+                    overview: "Overview",
+                }
+            ]
+
+            var i = 1;
+
+            
+
+            const modal = document.querySelector('.hero-slide__item')
+            
+            var background = document.querySelector('.hero-slide__item')
+            var poster = document.querySelector('.poster')
+            var title = document.querySelector('.title')
+            var overview = document.querySelector('.overview')
+    
+
+            window.onload = () => {
+                modal.classList.add('active')
+            }
+            
+            
+            
+    </script>
+    <!-- Search bar -->
+    <section id="search-bar" class="text-white" style="background-color:#000;padding:30px">
+    <div class="container">
+        <form class="form-inline flex-lg-row justify-content-between" method="get">
+            <div class="form-group mr-3">
+                <label for="genre-select" style="font-weight: 700; font-size: 20px; margin-right: 5px; ">Genre : </label>
+                <select name="type"  class="form-control" id="genre-select" style="width: 150px;">
+                        <option value="">all</option>
+
+                    {{#each types}}
+                        <option value="{{id_type_movie}}">{{type_name_movie}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="form-group mr-3">
+                <label for="year-select" style="font-weight: 700; font-size: 20px; margin-right: 5px;">Year :</label>
+                <select name="year"  class="form-control" id="year-select" style="width: 150px;">
+                    <option value="">All</option>
+                </select>
+                <script>
+                    $(document).ready(function () {
+                        var currentYear = new Date().getFullYear();
+                        for (var i = currentYear; i >= 1990; i--) {
+                            $('#year-select').append($('<option>', {
+                                value: i,
+                                text: i
+                            }));
+                        }
+                    });
+                </script>
+            </div>
+            <div class="form-group mr-3">
+                <label for="country-select" style="font-weight: 700; font-size: 20px; margin-right: 5px;">Country :</label>
+                <select name="country" class="form-control" id="country-select" style="width: 150px;">
+                    <option value="">All</option>
+                    <option value="Korean">Korean</option>
+                    <option value="America">America</option>
+                    <option value="Japan">Japan</option>
+                    <option value="England">England</option>
+                    <option value="Vietnamese">Vietnamese</option>
+                </select>
+            </div>
+            <div   class="form-group mr-3">
+                <label for="search-text" style="font-weight: 700; font-size: 20px; margin-right: 5px;">Search :</label>
+                <input name="search"  type="text" class="form-control" id="search-text" style="width: 200px;">
+            </div>
+            <button   class="btn btn-success my-2 my-sm-0" type="submit" id="filter-button" style="padding: 7px 28px;">Filter</button>
+        </form>
+    </div>
+</section>
+
+    <div style="background-color: #000;border-top:1px solid white;border-bottom:1px solid white">
+        <section id="movie-grid">
+            <div class="container">
+                <div class="row" id="movie-list"
+                    style="width: 100%; align-items: center; flex-wrap: wrap ">
+                    {{#each movies}}
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="movie-poster"
+                            style="position: relative; height: 400px !important; padding-top: 15px; padding-bottom: 15px;width: 100%;">
+                            <a href="/dashboard/detail/{{id_movie}}"
+                                style="display: inline-block; width: 100%; height: 100%;"><img src="{{this.poster}}"
+                                    alt="lỗi" style="object-fit:cover; width: 100%; height: 100%"> </a>
+
+                            <div class="name-file"
+                                style="position: absolute; bottom: 0px; background-color: rgba(0, 0, 0, 0.7); color: #fff; width: 100%; padding: 5px ; ">
+                                <div class="name1"
+                                    style="
+                                        white-space: nowrap; 
+                                        overflow: hidden; 
+                                        text-overflow: ellipsis; 
+                                        padding-bottom: 20px;
+                                    "
+                                >{{this.title_movie}}</div>
+                                {{!-- <div class="name2">name2</div> --}}
+                            </div>
+                        </div>
+                        <!-- <video controls width="640" height="360">
+                        <source src="{{this.movie}}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video> -->
+                    </div>
+                    {{/each}}
+                    <nav aria-label="Page navigation example" style="display:flex;justify-content:end;">
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="#"></a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            
+            </div>
+            
+        </section>
+    </div>
+
+
+
+
+
+
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+</body>
+
+</html>

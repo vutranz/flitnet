@@ -1,0 +1,56 @@
+<style>
+		label {
+			display: block;
+			margin-bottom: 5px;
+            color: white;
+		}
+		input[type="text"], input[type="password"], input[type="email"] {
+			padding: 5px;
+			margin-bottom: 10px;
+			width: 100%;
+			border: 1px solid #ccc;
+			border-radius: 3px;
+		}
+		input[type="submit"] {
+			background-color: #4CAF50;
+			border: none;
+			color: white;
+			padding: 10px 20px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin-bottom: 10px;
+			cursor: pointer;
+			border-radius: 3px;
+		}
+		input[type="submit"]:hover {
+			background-color: #3e8e41;
+		}
+</style>
+<div style="background-color: #000;border-top:1px solid white;border-bottom:1px solid white">
+    <div class="container">
+        <div class="row">
+             {{#each inf}}
+            <form action="/account/update" method="POST">
+                  
+                <input hidden type="text" id="id_account" name="id_account" value="{{this.id_account}}"required>
+
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" value="{{this.username}}"required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" value="{{this.password}}" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="{{this.email}}" required>
+
+                <input type="submit" value="Add">
+                
+            </form>
+            {{/each}}
+        </div>
+        
+        
+    </div>
+</div>

@@ -1,0 +1,80 @@
+<style>
+		label {
+			display: block;
+			margin-bottom: 5px;
+            color: white;
+		}
+		input[type="text"], input[type="password"], input[type="email"] {
+			padding: 5px;
+			margin-bottom: 10px;
+			width: 100%;
+			border: 1px solid #ccc;
+			border-radius: 3px;
+		}
+		input[type="submit"] {
+			background-color: #4CAF50;
+			border: none;
+			color: white;
+			padding: 10px 20px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin-bottom: 10px;
+			cursor: pointer;
+			border-radius: 3px;
+		}
+		input[type="submit"]:hover {
+			background-color: #3e8e41;
+		}
+</style>
+<div style="background-color: #000;border-top:1px solid white;border-bottom:1px solid white">
+    <div class="container">
+        <div class="row">
+            <form action="/account" method="POST">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <input type="submit" value="Add">
+            </form>
+        </div>
+        <div class="row">
+            <table class="table" style="color: #fff;">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Type</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Email</th>
+                        <th>Time created</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each accounts}}
+                    <tr>
+                        <td>{{this.id_account}}</td>
+                        <td>{{this.id_type}}</td>
+                        <td>{{this.username}}</td>
+                        <td>{{this.password}}</td>
+                        <td>{{this.email}}</td>
+                        <td>{{this.time_created}}</td>
+                        <td>
+                            <div style="display: flex; gap: 20px;">
+                                <a class="btn btn-danger" style="padding: 10px 20px;" href="/account/delete/{{this.id_account}}">Xóa</a>
+                                <a class="btn btn-warning" style="padding: 10px 20px" href="/account/edit/{{this.id_account}}">Sửa</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        {{!-- Begin: Style for slide --}}
+        <style>
+            .hero-slide__item {
+                background: url('https://genk.mediacdn.vn/zoom/700_438/139269124445442048/2022/12/31/avatar1672500493013-1672500493501603498260.jpg') no-repeat center /cover;
+                width: 100%;
+                position: relative;
+                color: #fff;
+                height: 100vh;
+                display:flex;
+                align-items: center;
+            }
+
+            .hero-slide__item::before {
+                content: "";
+                position:absolute ;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.6);
+            }
+
+            .hero-slide__item::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 100px;
+                background-image: linear-gradient(to top,#0f0f0f , rgba(0,0,0,0));
+            }
+
+            .hero-slide__item__content {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 80%;
+                margin: auto;
+            }
+
+            .hero-slide__item__content__info {
+                width: 60%;
+                padding: 0 3rem;
+                position: relative;
+                left: 100px;
+            }
+
+            .hero-slide__item__content__info .title {
+                font-size: 5rem;
+                font-weight: 700;
+                line-height: 1;
+            }
+
+            .hero-slide__item__content__info .overview {
+                font-weight: 700;
+            }
+
+            .btns, .title, .overview {
+                opacity: 0;
+                transform: translateY(-100px);
+                transition: transform 0.5s ease, opacity 0.5s ease;
+            }
+
+            .hero-slide__item__content__poster {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex: 1;
+            }
+
+            .hero-slide__item__content__poster > img {
+                width: 400px;
+                border-radius: $border-radius;
+                box-shadow: $box-shadow;
+
+                transform: scale(0);
+                transition: transform 0.7s ease;
+            }
+
+            .hero-slide__item.active > .hero-slide__item__content > .hero-slide__item__content__poster img {
+                transform: scale(1);
+            }
+
+            .hero-slide__item.active .btns,
+            .hero-slide__item.active .title,
+            .hero-slide__item.active .overview {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .title {
+            transition-delay: .3s, .3s
+        }
+
+        .overview {
+            transition-delay: .6s, .6s;
+            padding: 40px 0px;
+        }
+
+        .btns {
+            transition-delay: 0.9s, 0.9s;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .btn-watch {
+            cursor: pointer;
+            border: 4px solid transparent;
+            background-color: #ff0000;
+            color: #fff;
+            border-radius: 30px;
+            padding: 0.5rem 2rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            box-shadow: 0px 0px 7px 8px #ff00004d;
+            transition: box-shadow .3s ease;
+            position: relative;
+            display: inline-block;
+            
+        }
+
+        .btn-watch:hover {
+            box-shadow: 0px 0px 7px 15px #ff00004d;
+        }
+
+        .btn-trailer {
+            border: 3px solid #fff;
+            background-color: transparent;
+            color: #fff;
+            box-shadow: unset;
+            border-radius: 30px;
+            padding: 0.5rem 2rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            transition: color .3s ease, background-color .3s ease;
+        }
+
+        .btn-trailer:hover {
+            box-shadow: unset;
+            color: #ff0000;
+            background-color: white;
+            
+        }
+        </style>
+
+        
+        {{!-- End: Style for slide --}}
+</head>
+
+<body>
+    <header> 
+        {{>header}}
+    </header>
+
+    <div>
+        {{{body}}}
+    </div>
+
+    <footer>
+        {{> footer}}
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi4jlAp"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+        
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Movie Streaming Website</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        .root {
+            display: flex;
+            justify-content: center;
+        }
+        .wrapper-film-detail * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .wrapper-film-detail {
+            width: 100%;
+            display: flex;
+            justify-content:;
+            gap: 50px;
+            background-color: #000;
+            padding: 30px 50px;
+            
+        }
+
+        .film-image {
+            width:50%;
+            height: 500px;
+            
+        }
+
+        .film-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+
+        }
+
+        .film-description .name-film{
+            font-size: 30px;
+            color: red;
+        }
+
+        .name-film > p {
+            font-size: 16px;
+            color: #ccc;
+
+        }
+
+        .film-description {
+            width:50%
+            
+        }
+
+        .comment {
+            padding: 0px 50px;
+        }
+
+        .comment__content {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .sort {
+            display: flex;
+        }
+
+        .input-comment {
+            display: flex;
+            padding: 20px;
+            width: 100%;
+    
+        }
+
+        .input-comment > form {
+            width: 90%;
+        }
+
+        .avatar {
+            width: 70px;
+            height: 70px;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .input-comment input{
+            height: 70px;
+            margin-left: 20px;
+            width: 100%;
+            font-size: 23px;
+            padding: 0px 20px;
+        }
+
+        .init-comment {
+            padding: 20px;
+            display: flex;
+        }
+
+        .init-comment .user {
+            margin-left: 20px;
+        }
+
+        .user-name {
+            font-weight: 600;
+        }
+
+        .content-comment {
+            font-size: 18px;
+            margin: 10px 0px;
+        }
+
+        .user-handle > span {
+            font-size: 15px;
+            color: rgb(3, 88, 88);
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div class="root">
+        
+        <div class="wrapper-film-detail" style="color: #fff;">
+            {{#each detailMovie}}
+            <div class="film-image">
+                <a href="/dashboard/detail/{{id_movie}}"
+                                style="display: inline-block; width: 100%; height: 100%;"><img src="https://moviesmedia.ign.com/movies/image/object/752/752133/DomBatpod_OneSheet.jpg?width=300"
+                                    alt="lỗi"> </a>
+            </div>
+
+            <div class="film-description">
+                <div class="name-film">
+                    <p style="color: red; font-weight: 700; font-size: 50px; "> {{ this.title_movie }} </p>
+                </div>
+    
+                <div class="film-description__detail">
+                    <div class="key-value">
+                        <span class="key" style="font-weight: 700; font-size: 22px;"> Description : </sp>
+                        <span class="value" style="font-weight: 500; font-size: 20px;">{{this.description_movie}}</span>
+            </div>
+                    <div class="key-value">
+                        <span class="key" style="font-weight: 700; font-size: 22px;"> Relese year : </sp>
+                        <span class="value" style="font-weight: 500; font-size: 20px;">{{this.release_year}}</span>
+            </div>
+                <div class="key-value">
+                        <span class="key" style="font-weight: 700; font-size: 22px;"> Languge : </sp>
+                        <span class="value" style="font-weight: 500; font-size: 20px;">{{this.language}}</span>
+            </div>
+                <div class="key-value">
+                        <span class="key" style="font-weight: 700; font-size: 22px;"> Country : </sp>
+                        <span class="value" style="font-weight: 500; font-size: 20px;">{{this.country}}</span>
+            </div>
+                    <div class="key-value">
+                        <span class="key" style="font-weight: 700; font-size: 22px;"> Director: </sp>
+                        <span class="value" style="font-weight: 500; font-size: 20px;">{{this.director}}</span>
+            </div>
+                    
+        
+
+                <div class="watch-now" role="button" tabindex="-1"
+                    style="margin-top: 30px; padding: 20px 40px; background-color: red; color: #fff; border-radius: 5px;
+                    display: inline-block; font-size: 25px; font-weight: 600;
+                    "
+                >
+                    Watch now
+                {{!-- modal watch film --}}
+                    <div class="modal-watch-film" style="
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        bottom: 0;
+                        right: 0;
+                        background-color: rgba(0, 0, 0, 0.5);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        display: none;
+                        z-index: 2;
+                        user-point: unset;
+                    ">
+                         <iframe width="560" height="315" src="{{this.movie}}" 
+                         title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                
+                </div>
+            </div>
+            </div>
+            {{/each}}
+            
+        </div>
+
+    </div>
+
+    
+    
+
+    <div class="comment">
+        <h3>Binh luan Phim</h3>
+        <div class="comment-header">
+            
+            <div class="comment__content">
+                <div>21 binh luan</div>
+                <div class="sort">
+                    SSắp xếp xtheo
+                    <form action="">
+                        <select name="" id="">
+                            <option value="">TTự thêm</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="user-comment">
+            <div class="input-comment">
+                <div class="avatar">
+                    <img src="https://cdn.pixabay.com/photo/2014/04/13/20/49/cat-323262__340.jpg" alt="">
+                </div>
+                <form action="">
+                    <input type="text" placeholder="Viet binh luan">
+                </form>
+            </div>
+
+            <div class="init-comment">
+                <div class="avatar">
+                    <img src="https://scontent.fsgn13-2.fna.fbcdn.net/v/t39.30808-6/326945444_1242184123366335_2844090806464098776_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=nOWIBgunqfIAX_K9pWv&_nc_ht=scontent.fsgn13-2.fna&oh=00_AfDaR2Hk5i9oWxvR-Zz-etWD9HnDpBaNWYjcctjaJyAsZg&oe=6449CE86" alt="">
+                </div>
+                <div class="user">
+                    <div class="user-name">Hoa Wibu</div>
+                    <div class="content-comment">Phim hành động hay</div>
+                    <div class="user-handle">
+                        <span>Thich</span>
+                        <span>Phan hoi</span>
+                        <span>1 ngay</span>
+                    </div>
+                </div>
+            </div>
+            <div class="init-comment">
+                <div class="avatar">
+                    <img src="https://cdn.pixabay.com/photo/2014/04/13/20/49/cat-323262__340.jpg" alt="">
+                </div>
+                <div class="user">
+                    <div class="user-name">Phuc Wibu</div>
+                    <div class="content-comment">Phim hay 10d</div>
+                    <div class="user-handle">
+                        <span>Thich</span>
+                        <span>Phan hoi</span>
+                        <span>1 ngay</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        var watch_now = document.querySelector('.watch-now')
+        var film_modal = document.querySelector('.modal-watch-film')
+
+        watch_now.onclick = function() {
+            film_modal.style.display = 'flex'
+
+        }
+
+        window.onclick = function(e) {
+            if(e.target == film_modal) {
+                film_modal.style.display = 'none'
+            }
+            
+        }
+    </script>
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</html>

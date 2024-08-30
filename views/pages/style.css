@@ -1,0 +1,36 @@
+header {
+	background-color: #333;
+	color: #fff;
+	padding: 20px;
+}
+
+#search-bar {
+	background-color: #f2f2f2;
+	padding: 20px;
+}
+
+#movie-grid {
+	margin-top: 50px;
+}
+
+.movie-item {
+	background-color: #f2f2f2;
+	padding: 20px;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.movie-item img {
+	max-width: 100%;
+	height: auto;
+}
+
+.movie-item h2 {
+	margin-top: 0;
+	font-size: 24px;
+}
+
+.movie-item p {
+	margin-bottom: 0;
+}
